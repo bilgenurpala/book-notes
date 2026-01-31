@@ -1,13 +1,13 @@
-# BookNotes 📚
+# BookNotes
 
 A modern full-stack reading management application with Docker support and multi-language capabilities.
 
-## 🚀 Project Status
+## Project Status
 
-**Development Days Completed:** 1-2 of 16  
-**Last Updated:** January 30, 2026
+**Development Days Completed:** 3 of 16  
+**Last Updated:** January 17, 2025
 
-### ✅ Completed (Days 1-2)
+### Completed (Days 1-3)
 
 **Day 1 - Project Foundation:**
 - Project structure and folder organization
@@ -22,52 +22,62 @@ A modern full-stack reading management application with Docker support and multi
 - Complete database schema with 4 tables
 - Automatic database initialization script
 
-### 🔄 In Progress
-- Authentication system (Day 3)
-- User interface (Days 4-5)
-- Book management features (Days 6-11)
+**Day 3 - Authentication Backend:**
+- User registration with bcrypt password hashing
+- Login functionality with session management
+- Authentication controller and routes
+- Password security (10 rounds bcrypt)
+- Flash messages for user feedback
 
-## 🐳 Quick Start with Docker
+### In Progress
+- Authentication views (Day 4)
+- Main application layout (Day 5)
+
+## Quick Start with Docker
 ```bash
 # Clone the repository
 git clone https://github.com/bilgenurpala/book-notes.git
 cd book-notes
 
-# Start with one command
+# Start with Docker
 docker-compose up -d
 
 # Access the application
 http://localhost:3000
 ```
 
-## 📦 Project Structure
+## Project Structure
 ```
 book-notes/
-├── 📄 package.json           # All dependencies configured
-├── 📄 .env.example           # Environment variables template
-├── 📄 .gitignore             # Git ignore rules
+├── package.json
+├── .env.example
+├── .gitignore
 │
-├── 🐳 Dockerfile              # Node.js container config
-├── 🐳 docker-compose.yml      # Multi-container orchestration
-├── 🐳 .dockerignore           # Docker build optimization
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+├── init.sql
 │
-├── 💾 init.sql                # Database initialization script
-│
-├── 📁 src/
+├── src/
 │   ├── config/
-│   │   └── db.js             # PostgreSQL connection pool
-│   ├── controllers/          # (ready for Day 3)
-│   ├── routes/               # (ready for Day 3)
-│   └── views/                # (ready for Day 4)
+│   │   └── db.js                # PostgreSQL connection pool
+│   ├── controllers/
+│   │   └── authController.js    # Authentication logic (NEW)
+│   ├── routes/
+│   │   └── auth.js              # Auth routes (NEW)
+│   └── views/                   # (ready for Day 4)
+│       ├── auth/
+│       ├── books/
+│       └── layouts/
 │
-├── 📁 public/
-│   ├── css/                  # (ready for Day 15)
-│   └── uploads/              # Book cover storage
+├── public/
+│   ├── css/
+│   └── uploads/
 │
-└── 📁 locales/               # (ready for Day 14)
+└── locales/
 ```
 
-## 💾 Database Schema
+## Database Schema
 ```sql
 -- Users (authentication)
 users (id, username, email, password_hash, language, created_at)
@@ -82,46 +92,55 @@ notes (id, book_id, content, page_number, created_at)
 quotes (id, book_id, text, is_favorite, created_at)
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Backend:** Node.js 20, Express.js 5, PostgreSQL 16  
+**Authentication:** bcrypt (10 rounds)  
+**Session:** express-session  
 **DevOps:** Docker, Docker Compose  
 **Upcoming:** EJS Templates, i18n, Multer
 
-## 📅 Development Timeline
+## Development Timeline
 
 | Days | Phase | Status |
 |------|-------|--------|
-| 1-2 | Infrastructure Setup | ✅ Complete |
-| 3-5 | Authentication System | 🔄 Next |
-| 6-11 | Core Features | ⏳ Planned |
-| 12-13 | Dashboard & Stats | ⏳ Planned |
-| 14 | Multi-language | ⏳ Planned |
-| 15-16 | UI Polish | ⏳ Planned |
+| 1-2 | Infrastructure Setup | Complete |
+| 3-5 | Authentication System | In Progress |
+| 6-11 | Core Features | Planned |
+| 12-13 | Dashboard & Stats | Planned |
+| 14 | Multi-language | Planned |
+| 15-16 | UI Polish | Planned |
 
-## 🎯 Next Steps (Day 3)
+## Features Implemented
 
-- Implement authentication backend
-- Password hashing with bcrypt
-- User registration & login
-- Session management
+### Authentication (Day 3)
+- User registration with email validation
+- Secure password hashing (bcrypt, 10 rounds)
+- Login with session management
+- Logout functionality
+- Flash messages for user feedback
+- Error handling for auth failures
 
-## 👤 Author
+### Next Steps (Day 4)
+- Login page UI (EJS template)
+- Register page UI (EJS template)
+- Form validation and styling
+
+## Author
 
 **Bilgenur Pala**
-- 📧 Email: bilgenurpala@gmail.com
-- 🐙 GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
-- 💼 LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
+- Email: bilgenurpala@gmail.com
+- GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
+- LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
 
-## 📄 License
+## License
 
 ISC License
 
 ---
 
-**Current Status:** Infrastructure Complete ✅  
-**Days Completed:** 2 / 16  
-**Next Milestone:** Authentication System (Day 3)
+**Current Status:** Authentication Backend Complete  
+**Days Completed:** 3 / 16  
+**Next Milestone:** Authentication Views (Day 4)
 
-Made with ❤️ by Bilgenur Pala
-EOF
+Made with love by Bilgenur Pala
