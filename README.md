@@ -16,6 +16,7 @@ BookNotes is a comprehensive book management system that helps readers organize 
 - **Book Management** - Add, edit, delete, and organize your book collection
 - **Notes & Quotes** - Capture important passages and personal insights
 - **Reading Statistics** - Track your reading progress with visual dashboards
+- **File Upload** - Upload custom book cover images
 - **Multi-language Support** - Available in English and Turkish
 - **Dark Mode** - Easy on the eyes for night reading
 - **Docker Ready** - One-command deployment with Docker Compose
@@ -28,6 +29,7 @@ BookNotes is a comprehensive book management system that helps readers organize 
 - PostgreSQL 16
 - bcrypt for password hashing
 - express-session for authentication
+- Multer for file uploads
 
 **Frontend**
 - EJS templating engine
@@ -96,13 +98,16 @@ quotes     (id, book_id, text, is_favorite, created_at)
 book-notes/
 ├── src/
 │   ├── config/          # Database configuration
-│   ├── controllers/     # Business logic
+│   ├── controllers/     # Business logic (auth, books)
 │   ├── routes/          # API routes
 │   └── views/           # EJS templates
+│       ├── auth/        # Login, register
+│       ├── books/       # Book management (coming soon)
+│       └── layouts/     # Main layout
 ├── public/
 │   ├── css/             # Stylesheets
 │   └── uploads/         # Book cover images
-├── locales/             # i18n translations
+├── locales/             # i18n translations (EN/TR)
 ├── Dockerfile           # Container configuration
 ├── docker-compose.yml   # Multi-container setup
 └── init.sql             # Database schema
@@ -128,10 +133,25 @@ NODE_ENV=development
 - `POST /auth/register` - Process registration
 - `GET /auth/logout` - Logout
 
+### Books
+- `GET /books` - List all books
+- `GET /books/add` - Add book page
+- `POST /books/add` - Create new book
+- `GET /books/:id` - Book details
+- `GET /books/edit/:id` - Edit book page
+- `POST /books/edit/:id` - Update book
+- `POST /books/delete/:id` - Delete book
+
+### Notes & Quotes
+- `POST /books/:id/notes` - Add note
+- `POST /books/:id/notes/:noteId/delete` - Delete note
+- `POST /books/:id/quotes` - Add quote
+- `POST /books/:id/quotes/:quoteId/delete` - Delete quote
+- `POST /books/:id/quotes/:quoteId/favorite` - Toggle favorite
+
 ### Application
 - `GET /dashboard` - Main dashboard
-- `GET /books` - Book list
-- `GET /quotes` - Saved quotes
+- `GET /quotes` - All saved quotes
 - `GET /stats` - Reading statistics
 
 ## Development
@@ -151,6 +171,19 @@ npm run docker:down    # Stop containers
 npm run docker:logs    # View logs
 ```
 
+## Features Implementation Status
+
+- ✅ User authentication (register, login, logout)
+- ✅ Session management
+- ✅ Book CRUD operations
+- ✅ Notes system (add, delete)
+- ✅ Quotes system (add, delete, favorite)
+- ✅ File upload for book covers
+- ⏳ Book views (list, add, edit, detail) - In Progress
+- ⏳ Dashboard with statistics
+- ⏳ Multi-language interface
+- ⏳ Complete CSS styling
+
 ## Security Features
 
 - Password hashing with bcrypt (10 rounds)
@@ -158,6 +191,7 @@ npm run docker:logs    # View logs
 - SQL injection prevention (parameterized queries)
 - Environment variable protection
 - Input validation and sanitization
+- File upload restrictions (images only, 5MB max)
 
 ## Contributing
 

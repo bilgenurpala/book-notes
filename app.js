@@ -7,6 +7,7 @@ const path = require('path');
 const i18n = require('i18n');
 const db = require('./src/config/db');
 const authRoutes = require('./src/routes/auth');
+const booksRoutes = require('./src/routes/books');
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.get('/language/:lang', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/books', booksRoutes);
 
 app.get('/', (req, res) => {
     if (req.session.user) {
