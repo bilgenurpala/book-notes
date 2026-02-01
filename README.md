@@ -1,4 +1,4 @@
-# BookNotes 📚
+# BookNotes ���
 
 A modern, full-stack reading management application built with Node.js, PostgreSQL, and Docker.
 
@@ -85,32 +85,70 @@ cp .env.example .env
 npm start
 ```
 
+## Project Structure
+```
+book-notes/
+│
+├── public/                    # Static files
+│   ├── css/                   # Stylesheets
+│   │   ├── style.css          # Main styles (coming soon)
+│   │   └── landing.css        # Landing page styles (coming soon)
+│   └── uploads/               # Book cover images
+│       └── .gitkeep           # Keeps empty folder in Git
+│
+├── src/                       # Source code
+│   ├── config/
+│   │   └── db.js              # PostgreSQL connection pool
+│   │
+│   ├── controllers/           # Business logic
+│   │   ├── authController.js  # Authentication logic
+│   │   └── booksController.js # Books CRUD logic
+│   │
+│   ├── routes/                # API routes
+│   │   ├── auth.js            # Auth endpoints
+│   │   └── books.js           # Books endpoints
+│   │
+│   └── views/                 # EJS templates
+│       ├── auth/              # Authentication pages
+│       │   ├── login.ejs      # Login page
+│       │   └── register.ejs   # Registration page
+│       │
+│       ├── books/             # Book management pages (coming soon)
+│       │   ├── list.ejs       # Books list
+│       │   ├── add.ejs        # Add book form
+│       │   ├── edit.ejs       # Edit book form
+│       │   └── detail.ejs     # Book details
+│       │
+│       └── layouts/           # Layout templates
+│           └── main.ejs       # Main application layout
+│
+├── locales/                   # Internationalization (coming soon)
+│   ├── en.json                # English translations
+│   └── tr.json                # Turkish translations
+│
+├── .dockerignore              # Docker build exclusions
+├── .env.example               # Environment variables template
+├── .gitignore                 # Git exclusions
+├── app.js                     # Main application entry point
+├── docker-compose.yml         # Multi-container Docker setup
+├── Dockerfile                 # Node.js container configuration
+├── init.sql                   # Database schema initialization
+├── package.json               # NPM dependencies and scripts
+└── README.md                  # Project documentation
+```
+
+### Important Notes:
+
+- **Not in Git**: `node_modules/`, `.env`, `package-lock.json`, `public/uploads/*` (except .gitkeep)
+- **In Git**: All source code, configuration templates, documentation
+- **`.gitkeep`**: Empty file to preserve the `uploads/` folder structure in Git
+
 ## Database Schema
 ```sql
 users      (id, username, email, password_hash, language, created_at)
 books      (id, user_id, title, author, category, status, rating, summary, cover_image, created_at)
 notes      (id, book_id, content, page_number, created_at)
 quotes     (id, book_id, text, is_favorite, created_at)
-```
-
-## Project Structure
-```
-book-notes/
-├── src/
-│   ├── config/          # Database configuration
-│   ├── controllers/     # Business logic (auth, books)
-│   ├── routes/          # API routes
-│   └── views/           # EJS templates
-│       ├── auth/        # Login, register
-│       ├── books/       # Book management (coming soon)
-│       └── layouts/     # Main layout
-├── public/
-│   ├── css/             # Stylesheets
-│   └── uploads/         # Book cover images
-├── locales/             # i18n translations (EN/TR)
-├── Dockerfile           # Container configuration
-├── docker-compose.yml   # Multi-container setup
-└── init.sql             # Database schema
 ```
 
 ## Environment Variables
@@ -150,9 +188,10 @@ NODE_ENV=development
 - `POST /books/:id/quotes/:quoteId/favorite` - Toggle favorite
 
 ### Application
+- `GET /` - Home (redirects to dashboard or login)
 - `GET /dashboard` - Main dashboard
-- `GET /quotes` - All saved quotes
-- `GET /stats` - Reading statistics
+- `GET /quotes` - All saved quotes (coming soon)
+- `GET /stats` - Reading statistics (coming soon)
 
 ## Development
 ```bash
@@ -174,15 +213,17 @@ npm run docker:logs    # View logs
 ## Features Implementation Status
 
 - ✅ User authentication (register, login, logout)
-- ✅ Session management
-- ✅ Book CRUD operations
-- ✅ Notes system (add, delete)
-- ✅ Quotes system (add, delete, favorite)
-- ✅ File upload for book covers
+- ✅ Session management with express-session
+- ✅ Book CRUD operations backend
+- ✅ Notes system backend (add, delete)
+- ✅ Quotes system backend (add, delete, favorite)
+- ✅ File upload configuration with Multer
+- ✅ Main application layout
 - ⏳ Book views (list, add, edit, detail) - In Progress
 - ⏳ Dashboard with statistics
-- ⏳ Multi-language interface
+- ⏳ Multi-language interface (i18n)
 - ⏳ Complete CSS styling
+- ⏳ Landing page
 
 ## Security Features
 
@@ -192,6 +233,7 @@ npm run docker:logs    # View logs
 - Environment variable protection
 - Input validation and sanitization
 - File upload restrictions (images only, 5MB max)
+- Secure file storage in public/uploads
 
 ## Contributing
 
@@ -205,15 +247,15 @@ This is a personal project, but suggestions and feedback are welcome!
 
 ## License
 
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the ISC License.
 
 ## Author
 
 **Bilgenur Pala**
 
-- 📧 Email: bilgenurpala@gmail.com
-- 🐙 GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
-- 💼 LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
+- ��� Email: bilgenurpala@gmail.com
+- ��� GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
+- ��� LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
 
 ## Acknowledgments
 
