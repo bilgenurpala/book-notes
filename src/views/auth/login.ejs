@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme = "dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | BookNotes </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class = "auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="logo">📚</div>
+            <h1>Welcome Back!</h1>
+            <p>Login to access your book collection</p>
+        </div>
+
+        <% if (typeof success !== 'undefined' && success.length > 0) { %>
+            <div class = "alert-success"><%= success %></div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error.length > 0) { %>
+            <div class = "alert-error"><%= error %></div>
+        <% } %>
+
+        <form action = "/auth/login" method = "POST" class = "auth-form">
+            <div class = "form-group">
+                <label for="email">email</label>
+                <input type = "email" id = "email" name = "email" required>
+            </div>
+
+            <div class = "form-group">
+                <label for =  "password">Password</label>
+                <input type = "password" id = "password" name = "password" required>
+            </div>
+
+            <button type = "submit" class = "btn btn-primary btn-block"> Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
