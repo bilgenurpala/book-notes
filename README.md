@@ -1,157 +1,193 @@
-# BookNotes
+# BookNotes 📚
 
-A modern full-stack reading management application with Docker support and multi-language capabilities.
+A modern, full-stack reading management application built with Node.js, PostgreSQL, and Docker.
 
-## Project Status
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Node.js](https://img.shields.io/badge/Node.js-20-green.svg)](https://nodejs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)](https://www.postgresql.org/)
 
-**Development Days Completed:** 4 of 16  
-**Last Updated:** January 18, 2025
+## Overview
 
-### Completed (Days 1-4)
+BookNotes is a comprehensive book management system that helps readers organize their reading journey. Track books, save memorable quotes, write notes, and visualize your reading statistics—all in one place.
 
-**Day 1 - Project Foundation:**
-- Project structure and folder organization
-- Package dependencies configuration
-- Git repository initialization
-- Environment variables setup
+## Features
 
-**Day 2 - Docker & Database:**
-- Docker containerization with Node.js 20
-- Docker Compose multi-container setup
-- PostgreSQL 16 database configuration
-- Complete database schema with 4 tables
-- Automatic database initialization script
+- **User Authentication** - Secure registration and login with bcrypt password hashing
+- **Book Management** - Add, edit, delete, and organize your book collection
+- **Notes & Quotes** - Capture important passages and personal insights
+- **Reading Statistics** - Track your reading progress with visual dashboards
+- **Multi-language Support** - Available in English and Turkish
+- **Dark Mode** - Easy on the eyes for night reading
+- **Docker Ready** - One-command deployment with Docker Compose
 
-**Day 3 - Authentication Backend:**
-- User registration with bcrypt password hashing
-- Login functionality with session management
-- Authentication controller and routes
-- Password security (10 rounds bcrypt)
-- Flash messages for user feedback
+## Tech Stack
 
-**Day 4 - Authentication Views:**
-- Login page with form validation
-- Register page with user-friendly UI
-- Flash message display for errors/success
-- Responsive auth page design
-- Dark theme styling
+**Backend**
+- Node.js 20 (Alpine)
+- Express.js 5
+- PostgreSQL 16
+- bcrypt for password hashing
+- express-session for authentication
 
-### In Progress
-- Main application setup (Day 5)
-- Express app configuration
+**Frontend**
+- EJS templating engine
+- Modern CSS with custom properties
+- Font Awesome icons
+- Responsive design
 
-## Quick Start with Docker
+**DevOps**
+- Docker & Docker Compose
+- Automated database initialization
+- Environment-based configuration
+
+## Quick Start
+
+### Prerequisites
+
+- Docker Desktop installed
+- Git
+
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/bilgenurpala/book-notes.git
 cd book-notes
 
-# Start with Docker
+# Start the application
 docker-compose up -d
 
-# Access the application
-http://localhost:3000
+# Access at http://localhost:3000
+```
+
+That's it! The application will automatically:
+- Set up PostgreSQL database
+- Initialize database schema
+- Start the Node.js server
+
+### Manual Setup (Without Docker)
+```bash
+# Install dependencies
+npm install
+
+# Create PostgreSQL database
+createdb booknotes
+
+# Initialize database
+psql -d booknotes -f init.sql
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your database credentials
+
+# Start the server
+npm start
+```
+
+## Database Schema
+```sql
+users      (id, username, email, password_hash, language, created_at)
+books      (id, user_id, title, author, category, status, rating, summary, cover_image, created_at)
+notes      (id, book_id, content, page_number, created_at)
+quotes     (id, book_id, text, is_favorite, created_at)
 ```
 
 ## Project Structure
 ```
 book-notes/
-├── package.json
-├── .env.example
-├── .gitignore
-│
-├── Dockerfile
-├── docker-compose.yml
-├── init.sql
-│
 ├── src/
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   └── authController.js
-│   ├── routes/
-│   │   └── auth.js
-│   └── views/
-│       ├── auth/
-│       │   ├── login.ejs        # (NEW)
-│       │   └── register.ejs     # (NEW)
-│       ├── books/
-│       └── layouts/             # (ready for Day 5)
-│
+│   ├── config/          # Database configuration
+│   ├── controllers/     # Business logic
+│   ├── routes/          # API routes
+│   └── views/           # EJS templates
 ├── public/
-│   ├── css/                     # (ready for Day 15)
-│   └── uploads/
-│
-└── locales/
+│   ├── css/             # Stylesheets
+│   └── uploads/         # Book cover images
+├── locales/             # i18n translations
+├── Dockerfile           # Container configuration
+├── docker-compose.yml   # Multi-container setup
+└── init.sql             # Database schema
 ```
 
-## Database Schema
-```sql
--- Users (authentication)
-users (id, username, email, password_hash, language, created_at)
-
--- Books (main collection)
-books (id, user_id, title, author, category, status, rating, summary, cover_image, created_at)
-
--- Notes (book annotations)
-notes (id, book_id, content, page_number, created_at)
-
--- Quotes (memorable passages)
-quotes (id, book_id, text, is_favorite, created_at)
+## Environment Variables
+```env
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=your_password
+DB_NAME=booknotes
+DB_PORT=5432
+SESSION_SECRET=your_random_secret_key
+NODE_ENV=development
 ```
 
-## Tech Stack
+## API Routes
 
-**Backend:** Node.js 20, Express.js 5, PostgreSQL 16  
-**Authentication:** bcrypt (10 rounds), express-session  
-**Templating:** EJS  
-**DevOps:** Docker, Docker Compose  
-**Upcoming:** Main layout, i18n, Multer
+### Authentication
+- `GET /auth/login` - Login page
+- `POST /auth/login` - Process login
+- `GET /auth/register` - Registration page
+- `POST /auth/register` - Process registration
+- `GET /auth/logout` - Logout
 
-## Development Timeline
+### Application
+- `GET /dashboard` - Main dashboard
+- `GET /books` - Book list
+- `GET /quotes` - Saved quotes
+- `GET /stats` - Reading statistics
 
-| Days | Phase | Status |
-|------|-------|--------|
-| 1-2 | Infrastructure Setup | Complete |
-| 3-4 | Authentication System | Complete |
-| 5 | Express App & Layout | Next |
-| 6-11 | Core Features | Planned |
-| 12-13 | Dashboard & Stats | Planned |
-| 14 | Multi-language | Planned |
-| 15-16 | UI Polish | Planned |
+## Development
+```bash
+# Install dependencies
+npm install
 
-## Features Implemented
+# Start development server (with nodemon)
+npm run dev
 
-### Authentication (Days 3-4)
-- User registration with email validation
-- Secure password hashing (bcrypt, 10 rounds)
-- Login with session management
-- Logout functionality
-- Flash messages for user feedback
-- Responsive auth UI with dark theme
-- Error handling and form validation
+# Start production server
+npm start
 
-### Next Steps (Day 5)
-- Express app configuration (app.js)
-- Main layout with navigation
-- EJS layouts setup
-- Routing structure
+# Docker commands
+npm run docker:up      # Start containers
+npm run docker:down    # Stop containers
+npm run docker:logs    # View logs
+```
+
+## Security Features
+
+- Password hashing with bcrypt (10 rounds)
+- Session-based authentication
+- SQL injection prevention (parameterized queries)
+- Environment variable protection
+- Input validation and sanitization
+
+## Contributing
+
+This is a personal project, but suggestions and feedback are welcome!
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
 **Bilgenur Pala**
-- Email: bilgenurpala@gmail.com
-- GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
-- LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
 
-## License
+- 📧 Email: bilgenurpala@gmail.com
+- 🐙 GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
+- 💼 LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
 
-ISC License
+## Acknowledgments
+
+- Built as part of a structured learning journey in full-stack development
+- Inspired by the need for better personal reading management tools
 
 ---
 
-**Current Status:** Authentication Complete  
-**Days Completed:** 4 / 16  
-**Next Milestone:** Express App Setup (Day 5)
+⭐ If you find this project useful, please consider giving it a star!
 
-Made with love by Bilgenur Pala
+Made with ❤️ by Bilgenur Pala
