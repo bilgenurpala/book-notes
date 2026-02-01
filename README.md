@@ -4,10 +4,10 @@ A modern full-stack reading management application with Docker support and multi
 
 ## Project Status
 
-**Development Days Completed:** 3 of 16  
-**Last Updated:** January 17, 2025
+**Development Days Completed:** 4 of 16  
+**Last Updated:** January 18, 2025
 
-### Completed (Days 1-3)
+### Completed (Days 1-4)
 
 **Day 1 - Project Foundation:**
 - Project structure and folder organization
@@ -29,9 +29,16 @@ A modern full-stack reading management application with Docker support and multi
 - Password security (10 rounds bcrypt)
 - Flash messages for user feedback
 
+**Day 4 - Authentication Views:**
+- Login page with form validation
+- Register page with user-friendly UI
+- Flash message display for errors/success
+- Responsive auth page design
+- Dark theme styling
+
 ### In Progress
-- Authentication views (Day 4)
-- Main application layout (Day 5)
+- Main application setup (Day 5)
+- Express app configuration
 
 ## Quick Start with Docker
 ```bash
@@ -55,23 +62,24 @@ book-notes/
 │
 ├── Dockerfile
 ├── docker-compose.yml
-├── .dockerignore
 ├── init.sql
 │
 ├── src/
 │   ├── config/
-│   │   └── db.js                # PostgreSQL connection pool
+│   │   └── db.js
 │   ├── controllers/
-│   │   └── authController.js    # Authentication logic (NEW)
+│   │   └── authController.js
 │   ├── routes/
-│   │   └── auth.js              # Auth routes (NEW)
-│   └── views/                   # (ready for Day 4)
+│   │   └── auth.js
+│   └── views/
 │       ├── auth/
+│       │   ├── login.ejs        # (NEW)
+│       │   └── register.ejs     # (NEW)
 │       ├── books/
-│       └── layouts/
+│       └── layouts/             # (ready for Day 5)
 │
 ├── public/
-│   ├── css/
+│   ├── css/                     # (ready for Day 15)
 │   └── uploads/
 │
 └── locales/
@@ -95,17 +103,18 @@ quotes (id, book_id, text, is_favorite, created_at)
 ## Tech Stack
 
 **Backend:** Node.js 20, Express.js 5, PostgreSQL 16  
-**Authentication:** bcrypt (10 rounds)  
-**Session:** express-session  
+**Authentication:** bcrypt (10 rounds), express-session  
+**Templating:** EJS  
 **DevOps:** Docker, Docker Compose  
-**Upcoming:** EJS Templates, i18n, Multer
+**Upcoming:** Main layout, i18n, Multer
 
 ## Development Timeline
 
 | Days | Phase | Status |
 |------|-------|--------|
 | 1-2 | Infrastructure Setup | Complete |
-| 3-5 | Authentication System | In Progress |
+| 3-4 | Authentication System | Complete |
+| 5 | Express App & Layout | Next |
 | 6-11 | Core Features | Planned |
 | 12-13 | Dashboard & Stats | Planned |
 | 14 | Multi-language | Planned |
@@ -113,18 +122,20 @@ quotes (id, book_id, text, is_favorite, created_at)
 
 ## Features Implemented
 
-### Authentication (Day 3)
+### Authentication (Days 3-4)
 - User registration with email validation
 - Secure password hashing (bcrypt, 10 rounds)
 - Login with session management
 - Logout functionality
 - Flash messages for user feedback
-- Error handling for auth failures
+- Responsive auth UI with dark theme
+- Error handling and form validation
 
-### Next Steps (Day 4)
-- Login page UI (EJS template)
-- Register page UI (EJS template)
-- Form validation and styling
+### Next Steps (Day 5)
+- Express app configuration (app.js)
+- Main layout with navigation
+- EJS layouts setup
+- Routing structure
 
 ## Author
 
@@ -139,8 +150,8 @@ ISC License
 
 ---
 
-**Current Status:** Authentication Backend Complete  
-**Days Completed:** 3 / 16  
-**Next Milestone:** Authentication Views (Day 4)
+**Current Status:** Authentication Complete  
+**Days Completed:** 4 / 16  
+**Next Milestone:** Express App Setup (Day 5)
 
 Made with love by Bilgenur Pala
