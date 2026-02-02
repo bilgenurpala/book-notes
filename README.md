@@ -1,4 +1,4 @@
-# BookNotes í³š
+# BookNotes ğŸ“š
 
 A modern, full-stack reading management application built with Node.js, PostgreSQL, and Docker.
 
@@ -283,9 +283,9 @@ This project is licensed under the ISC License.
 
 **Bilgenur Pala**
 
-- í³§ Email: bilgenurpala@gmail.com
-- í°™ GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
-- í²¼ LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
+- ğŸ“§ Email: bilgenurpala@gmail.com
+- ğŸ™ GitHub: [@bilgenurpala](https://github.com/bilgenurpala)
+- ğŸ’¼ LinkedIn: [Bilgenur Pala](https://www.linkedin.com/in/bilgenur-pala-892a1a225/)
 
 ## Acknowledgments
 
