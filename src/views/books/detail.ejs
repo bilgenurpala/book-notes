@@ -1,0 +1,157 @@
+<div class="page-header">
+    <h2><%= book.title %></h2>
+    <div class="header-actions">
+        <a href="/books/edit/<%= book.id %>" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <form action="/books/delete/<%= book.id %>" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this book?');">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+        </form>
+        <a href="/books" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+    </div>
+</div>
+
+<div class="book-detail">
+    <div class="book-detail-header">
+        <div class="book-cover-large">
+            <% if (book.cover_image) { %>
+                <img src="<%= book.cover_image %>" alt="<%= book.title %>">
+            <% } else { %>
+                <div class="no-cover-large">
+                    <i class="fas fa-book"></i>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="book-meta">
+            <h3><%= book.title %></h3>
+            <p class="author"><i class="fas fa-user"></i> <%= book.author %></p>
+            
+            <% if (book.category) { %>
+                <p><i class="fas fa-tag"></i> <%= book.category %></p>
+            <% } %>
+
+            <p>
+                <span class="badge badge-<%= book.status %>">
+                    <%= book.status %>
+                </span>
+            </p>
+
+            <% if (book.rating) { %>
+                <div class="rating-large">
+                    <% for(let i = 1; i <= 5; i++) { %>
+                        <i class="fas fa-star <%= i <= book.rating ? 'active' : '' %>"></i>
+                    <% } %>
+                    <span>(<%= book.rating %>/5)</span>
+                </div>
+            <% } %>
+
+            <% if (book.summary) { %>
+                <div class="summary">
+                    <h4>Summary</h4>
+                    <p><%= book.summary %></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="section">
+        <div class="section-header">
+            <h3><i class="fas fa-sticky-note"></i> Notes (<%= notes.length %>)</h3>
+            <button class="btn btn-sm btn-primary" onclick="document.getElementById('add-note-form').classList.toggle('hidden')">
+                <i class="fas fa-plus"></i> Add Note
+            </button>
+        </div>
+
+        <form id="add-note-form" action="/books/<%= book.id %>/notes" method="POST" class="add-form hidden">
+            <div class="form-group">
+                <textarea name="content" placeholder="Write your note here..." required rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="number" name="page_number" placeholder="Page number (optional)" min="1">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Note</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-note-form').classList.add('hidden')">Cancel</button>
+        </form>
+
+        <div class="notes-list">
+            <% if (notes.length === 0) { %>
+                <p class="empty-message">No notes yet. Add your first note!</p>
+            <% } else { %>
+                <% notes.forEach(note => { %>
+                    <div class="note-item">
+                        <div class="note-content">
+                            <% if (note.page_number) { %>
+                                <span class="page-badge">Page <%= note.page_number %></span>
+                            <% } %>
+                            <p><%= note.content %></p>
+                            <small><%= new Date(note.created_at).toLocaleDateString() %></small>
+                        </div>
+                        <form action="/books/<%= book.id %>/notes/<%= note.id %>/delete" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this note?')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Quotes Section -->
+    <div class="section">
+        <div class="section-header">
+            <h3><i class="fas fa-quote-right"></i> Quotes (<%= quotes.length %>)</h3>
+            <button class="btn btn-sm btn-primary" onclick="document.getElementById('add-quote-form').classList.toggle('hidden')">
+                <i class="fas fa-plus"></i> Add Quote
+            </button>
+        </div>
+
+        <form id="add-quote-form" action="/books/<%= book.id %>/quotes" method="POST" class="add-form hidden">
+            <div class="form-group">
+                <textarea name="text" placeholder="Enter the quote..." required rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Quote</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('add-quote-form').classList.add('hidden')">Cancel</button>
+        </form>
+
+        <div class="quotes-list">
+            <% if (quotes.length === 0) { %>
+                <p class="empty-message">No quotes yet. Add your first quote!</p>
+            <% } else { %>
+                <% quotes.forEach(quote => { %>
+                    <div class="quote-item">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p><%= quote.text %></p>
+                            <small><%= new Date(quote.created_at).toLocaleDateString() %></small>
+                        </div>
+                        <div class="quote-actions">
+                            <form action="/books/<%= book.id %>/quotes/<%= quote.id %>/favorite" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-sm <%= quote.is_favorite ? 'btn-warning' : 'btn-secondary' %>">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                            </form>
+                            <form action="/books/<%= book.id %>/quotes/<%= quote.id %>/delete" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this quote?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<style>
+.hidden {
+    display: none;
+}
+</style>

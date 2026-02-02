@@ -1,0 +1,82 @@
+<div class="page-header">
+    <h2>Edit Book</h2>
+    <a href="/books/<%= book.id %>" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Details
+    </a>
+</div>
+
+<div class="form-container">
+    <form action="/books/edit/<%= book.id %>" method="POST" enctype="multipart/form-data" class="book-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="title">Book Title *</label>
+                <input type="text" id="title" name="title" value="<%= book.title %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author *</label>
+                <input type="text" id="author" name="author" value="<%= book.author %>" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" value="<%= book.category || '' %>" placeholder="Fiction, Science, Biography...">
+            </div>
+
+            <div class="form-group">
+                <label for="status">Reading Status *</label>
+                <select id="status" name="status" required>
+                    <option value="reading" <%= book.status === 'reading' ? 'selected' : '' %>>Currently Reading</option>
+                    <option value="completed" <%= book.status === 'completed' ? 'selected' : '' %>>Completed</option>
+                    <option value="want to read" <%= book.status === 'want to read' ? 'selected' : '' %>>Want to Read</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select id="rating" name="rating">
+                    <option value="" <%= !book.rating ? 'selected' : '' %>>Not rated yet</option>
+                    <option value="1" <%= book.rating === 1 ? 'selected' : '' %>>⭐ 1 Star</option>
+                    <option value="2" <%= book.rating === 2 ? 'selected' : '' %>>⭐⭐ 2 Stars</option>
+                    <option value="3" <%= book.rating === 3 ? 'selected' : '' %>>⭐⭐⭐ 3 Stars</option>
+                    <option value="4" <%= book.rating === 4 ? 'selected' : '' %>>⭐⭐⭐⭐ 4 Stars</option>
+                    <option value="5" <%= book.rating === 5 ? 'selected' : '' %>>⭐⭐⭐⭐⭐ 5 Stars</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea id="summary" name="summary" rows="4" placeholder="Brief summary or your thoughts..."><%= book.summary || '' %></textarea>
+        </div>
+
+        <% if (book.cover_image) { %>
+            <div class="current-cover">
+                <label>Current Cover</label>
+                <img src="<%= book.cover_image %>" alt="<%= book.title %>" style="max-width: 200px;">
+            </div>
+        <% } %>
+
+        <div class="form-group">
+            <label for="cover_image">New Cover Image</label>
+            <input type="file" id="cover_image" name="cover_image" accept="image/*">
+            <small>Upload a new image to replace the current cover</small>
+        </div>
+
+        <div class="form-group">
+            <label for="cover_url">Or Cover Image URL</label>
+            <input type="url" id="cover_url" name="cover_url" value="<%= book.cover_image || '' %>" placeholder="https://example.com/cover.jpg">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+            <a href="/books/<%= book.id %>" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

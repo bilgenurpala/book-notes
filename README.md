@@ -12,14 +12,17 @@ BookNotes is a comprehensive book management system that helps readers organize 
 
 ## Features
 
-- **User Authentication** - Secure registration and login with bcrypt password hashing
-- **Book Management** - Add, edit, delete, and organize your book collection
-- **Notes & Quotes** - Capture important passages and personal insights
-- **Reading Statistics** - Track your reading progress with visual dashboards
-- **File Upload** - Upload custom book cover images
-- **Multi-language Support** - Available in English and Turkish
-- **Dark Mode** - Easy on the eyes for night reading
-- **Docker Ready** - One-command deployment with Docker Compose
+- ✅ **User Authentication** - Secure registration and login with bcrypt password hashing
+- ✅ **Book Management** - Add, edit, delete, and organize your book collection
+- ✅ **Notes & Quotes** - Capture important passages and personal insights
+- ✅ **Book Details** - View comprehensive information with cover images
+- ✅ **Reading Status** - Track books as reading, completed, or want to read
+- ✅ **Rating System** - Rate books with 1-5 stars
+- ✅ **File Upload** - Upload custom book cover images (max 5MB)
+- ⏳ **Reading Statistics** - Track your reading progress with visual dashboards (coming soon)
+- ⏳ **Multi-language Support** - Available in English and Turkish (coming soon)
+- ⏳ **Dark Mode** - Easy on the eyes for night reading (coming soon)
+- ✅ **Docker Ready** - One-command deployment with Docker Compose
 
 ## Tech Stack
 
@@ -27,15 +30,15 @@ BookNotes is a comprehensive book management system that helps readers organize 
 - Node.js 20 (Alpine)
 - Express.js 5
 - PostgreSQL 16
-- bcrypt for password hashing
+- bcrypt for password hashing (10 rounds)
 - express-session for authentication
 - Multer for file uploads
 
 **Frontend**
 - EJS templating engine
-- Modern CSS with custom properties
+- Modern CSS with custom properties (coming soon)
 - Font Awesome icons
-- Responsive design
+- Responsive design (coming soon)
 
 **DevOps**
 - Docker & Docker Compose
@@ -90,9 +93,9 @@ npm start
 book-notes/
 │
 ├── public/                    # Static files
-│   ├── css/                   # Stylesheets
-│   │   ├── style.css          # Main styles (coming soon)
-│   │   └── landing.css        # Landing page styles (coming soon)
+│   ├── css/                   # Stylesheets (coming soon)
+│   │   ├── style.css          # Main styles
+│   │   └── landing.css        # Landing page styles
 │   └── uploads/               # Book cover images
 │       └── .gitkeep           # Keeps empty folder in Git
 │
@@ -102,22 +105,22 @@ book-notes/
 │   │
 │   ├── controllers/           # Business logic
 │   │   ├── authController.js  # Authentication logic
-│   │   └── booksController.js # Books CRUD logic
+│   │   └── booksController.js # Books CRUD + Notes + Quotes
 │   │
 │   ├── routes/                # API routes
 │   │   ├── auth.js            # Auth endpoints
-│   │   └── books.js           # Books endpoints
+│   │   └── books.js           # Books endpoints with Multer
 │   │
 │   └── views/                 # EJS templates
 │       ├── auth/              # Authentication pages
 │       │   ├── login.ejs      # Login page
 │       │   └── register.ejs   # Registration page
 │       │
-│       ├── books/             # Book management pages (coming soon)
-│       │   ├── list.ejs       # Books list
+│       ├── books/             # Book management pages ✅ NEW
+│       │   ├── list.ejs       # Books grid view
 │       │   ├── add.ejs        # Add book form
 │       │   ├── edit.ejs       # Edit book form
-│       │   └── detail.ejs     # Book details
+│       │   └── detail.ejs     # Book details with notes & quotes
 │       │
 │       └── layouts/           # Layout templates
 │           └── main.ejs       # Main application layout
@@ -172,26 +175,27 @@ NODE_ENV=development
 - `GET /auth/logout` - Logout
 
 ### Books
-- `GET /books` - List all books
-- `GET /books/add` - Add book page
-- `POST /books/add` - Create new book
-- `GET /books/:id` - Book details
-- `GET /books/edit/:id` - Edit book page
-- `POST /books/edit/:id` - Update book
-- `POST /books/delete/:id` - Delete book
+- `GET /books` - List all user's books (grid view)
+- `GET /books/add` - Add book form page
+- `POST /books/add` - Create new book (with file upload)
+- `GET /books/:id` - Book details with notes and quotes
+- `GET /books/edit/:id` - Edit book form page
+- `POST /books/edit/:id` - Update book (with file upload)
+- `POST /books/delete/:id` - Delete book and its cover image
 
-### Notes & Quotes
-- `POST /books/:id/notes` - Add note
-- `POST /books/:id/notes/:noteId/delete` - Delete note
-- `POST /books/:id/quotes` - Add quote
-- `POST /books/:id/quotes/:quoteId/delete` - Delete quote
-- `POST /books/:id/quotes/:quoteId/favorite` - Toggle favorite
+### Notes
+- `POST /books/:id/notes` - Add note to a book
+- `POST /books/:id/notes/:noteId/delete` - Delete a note
+
+### Quotes
+- `POST /books/:id/quotes` - Add quote to a book
+- `POST /books/:id/quotes/:quoteId/delete` - Delete a quote
+- `POST /books/:id/quotes/:quoteId/favorite` - Toggle favorite status
 
 ### Application
 - `GET /` - Home (redirects to dashboard or login)
-- `GET /dashboard` - Main dashboard
-- `GET /quotes` - All saved quotes (coming soon)
-- `GET /stats` - Reading statistics (coming soon)
+- `GET /dashboard` - Main dashboard with statistics
+- `GET /language/:lang` - Switch language (en/tr)
 
 ## Development
 ```bash
@@ -205,35 +209,61 @@ npm run dev
 npm start
 
 # Docker commands
-npm run docker:up      # Start containers
-npm run docker:down    # Stop containers
-npm run docker:logs    # View logs
+docker-compose up -d       # Start containers
+docker-compose down        # Stop containers
+docker-compose logs -f     # View logs
+docker-compose down -v     # Remove volumes
 ```
 
 ## Features Implementation Status
 
-- ✅ User authentication (register, login, logout)
+**Completed (Days 1-8):**
+- ✅ User authentication system (register, login, logout)
 - ✅ Session management with express-session
-- ✅ Book CRUD operations backend
-- ✅ Notes system backend (add, delete)
-- ✅ Quotes system backend (add, delete, favorite)
+- ✅ Book CRUD operations (backend + frontend)
+- ✅ Book listing with grid layout and empty state
+- ✅ Add book form with file upload and URL input
+- ✅ Edit book form with current data population
+- ✅ Book detail page with comprehensive information
+- ✅ Notes system (add, delete, page numbers)
+- ✅ Quotes system (add, delete, toggle favorite)
 - ✅ File upload configuration with Multer
-- ✅ Main application layout
-- ⏳ Book views (list, add, edit, detail) - In Progress
-- ⏳ Dashboard with statistics
+- ✅ Book cover image support (upload or URL)
+- ✅ Reading status tracking (reading, completed, want to read)
+- ✅ 5-star rating system
+- ✅ Main application layout with sidebar navigation
+- ✅ Flash messages for user feedback
+
+**In Progress (Days 9-16):**
+- ⏳ Dashboard with reading statistics
+- ⏳ All quotes page
+- ⏳ Statistics visualization
 - ⏳ Multi-language interface (i18n)
-- ⏳ Complete CSS styling
+- ⏳ Complete CSS styling with dark mode
 - ⏳ Landing page
+- ⏳ Responsive mobile design
 
 ## Security Features
 
 - Password hashing with bcrypt (10 rounds)
 - Session-based authentication
 - SQL injection prevention (parameterized queries)
-- Environment variable protection
+- Environment variable protection (.env not in Git)
 - Input validation and sanitization
 - File upload restrictions (images only, 5MB max)
 - Secure file storage in public/uploads
+- CSRF protection via session
+- Authorization checks (user can only access own books)
+
+## User Workflow
+
+1. **Register** - Create account with username, email, password
+2. **Login** - Access your personal library
+3. **Add Books** - Upload cover or use URL, add details
+4. **Manage Books** - Edit, delete, change status and rating
+5. **Take Notes** - Add notes with optional page numbers
+6. **Save Quotes** - Capture memorable passages, mark favorites
+7. **Track Progress** - View dashboard statistics
 
 ## Contributing
 

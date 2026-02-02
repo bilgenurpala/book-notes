@@ -1,0 +1,75 @@
+<div class="page-header">
+    <h2>Add New Book</h2>
+    <a href="/books" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Books
+    </a>
+</div>
+
+<div class="form-container">
+    <form action="/books/add" method="POST" enctype="multipart/form-data" class="book-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="title">Book Title *</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author *</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Fiction, Science, Biography...">
+            </div>
+
+            <div class="form-group">
+                <label for="status">Reading Status *</label>
+                <select id="status" name="status" required>
+                    <option value="reading">Currently Reading</option>
+                    <option value="completed">Completed</option>
+                    <option value="want to read">Want to Read</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select id="rating" name="rating">
+                    <option value="">Not rated yet</option>
+                    <option value="1">⭐ 1 Star</option>
+                    <option value="2">⭐⭐ 2 Stars</option>
+                    <option value="3">⭐⭐⭐ 3 Stars</option>
+                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea id="summary" name="summary" rows="4" placeholder="Brief summary or your thoughts about the book..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="cover_image">Cover Image</label>
+            <input type="file" id="cover_image" name="cover_image" accept="image/*">
+            <small>Or paste an image URL below</small>
+        </div>
+
+        <div class="form-group">
+            <label for="cover_url">Cover Image URL</label>
+            <input type="url" id="cover_url" name="cover_url" placeholder="https://example.com/cover.jpg">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Add Book
+            </button>
+            <a href="/books" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
