@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="welcome-banner fade-in">
+        <h1><i class="fas fa-sparkles"></i> <%= __('dashboard.welcome', user.username) %></h1>
+        <p><%= __('dashboard.overview') %></p>
+        <a href="/books/add" class="btn">
+            <i class="fas fa-plus"></i> <%= __('bookList.addNew') %>
+        </a>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card fade-in-d1">
+            <div class="stat-icon books"><i class="fas fa-book"></i></div>
+            <div class="stat-content">
+                <h3><%= stats.totalBooks %></h3>
+                <p><%= __('dashboard.totalBooks') %></p>
+            </div>
+        </div>
+        <div class="stat-card fade-in-d1">
+            <div class="stat-icon reading"><i class="fas fa-book-reader"></i></div>
+            <div class="stat-content">
+                <h3><%= stats.reading %></h3>
+                <p><%= __('dashboard.currentlyReading') %></p>
+            </div>
+        </div>
+        <div class="stat-card fade-in-d2">
+            <div class="stat-icon completed"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-content">
+                <h3><%= stats.completed %></h3>
+                <p><%= __('dashboard.completed') %></p>
+            </div>
+        </div>
+        <div class="stat-card fade-in-d2">
+            <div class="stat-icon quotes"><i class="fas fa-quote-right"></i></div>
+            <div class="stat-content">
+                <h3><%= stats.quotes %></h3>
+                <p><%= __('dashboard.savedQuotes') %></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-label fade-in-d3"><%= __('dashboard.quickActions') %></div>
+
+    <div class="card fade-in-d3">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="/books" class="btn btn-secondary">
+                <i class="fas fa-book"></i> <%= __('dashboard.viewAllBooks') %>
+            </a>
+            <a href="/books/add" class="btn btn-secondary">
+                <i class="fas fa-plus-circle"></i> <%= __('nav.addBook') %>
+            </a>
+        </div>
+    </div>
+</div>

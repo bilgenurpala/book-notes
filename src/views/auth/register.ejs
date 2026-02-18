@@ -1,46 +1,300 @@
 <!DOCTYPE html>
-<html lang="en" data-theme = "dark">
+<html lang="<%= locale || 'en' %>" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | BookNotes</title>
-    <link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<body class="auth-page">
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <div class="logo">📚</div>
-                <h1>Create Account</h1>
-                <p>Start your reading journey today</p>
+    <title><%= __('register.title') %> - BookNotes</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>(function(){var s=localStorage.getItem('booknotes-theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})()</script>
+</head>
+<body>
+    <div class="auth-split">
+        <!-- LEFT: Register Illustration -->
+        <div class="auth-illustration auth-illust-register">
+            <div class="float-shape reg-fs-1"></div>
+            <div class="float-shape reg-fs-2"></div>
+            <div class="float-shape reg-fs-3"></div>
+            <div class="float-shape reg-fs-4"></div>
+
+            <a href="/" class="illust-brand">
+                <div class="illust-brand-icon"><i class="fas fa-book-open"></i></div>
+                <span class="illust-brand-text">BookNotes</span>
+            </a>
+
+            <div class="illust-visual">
+                <!-- Cartoon: Person climbing stack of books toward stars / rocket -->
+                <svg viewBox="0 0 400 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="illust-svg">
+                    <!-- Floor shadow -->
+                    <ellipse cx="200" cy="360" rx="150" ry="12" fill="rgba(0,0,0,0.08)"/>
+
+                    <!-- Giant book stack -->
+                    <rect x="120" y="280" width="160" height="30" rx="4" fill="#fff" opacity="0.85" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                    <rect x="128" y="286" width="80" height="3" rx="1.5" fill="#ddd" opacity="0.5"/>
+                    <rect x="128" y="292" width="60" height="3" rx="1.5" fill="#ddd" opacity="0.5"/>
+
+                    <rect x="130" y="250" width="150" height="30" rx="4" fill="#FFC947" opacity="0.8"/>
+                    <rect x="140" y="258" width="60" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+                    <rect x="140" y="264" width="40" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+
+                    <rect x="125" y="220" width="155" height="30" rx="4" fill="#00C9A7" opacity="0.8"/>
+                    <rect x="135" y="228" width="70" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+                    <rect x="135" y="234" width="45" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+
+                    <rect x="135" y="190" width="140" height="30" rx="4" fill="#FF6B6B" opacity="0.8"/>
+                    <rect x="145" y="198" width="55" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+                    <rect x="145" y="204" width="35" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+
+                    <rect x="140" y="160" width="130" height="30" rx="4" fill="#A29BFE" opacity="0.8"/>
+                    <rect x="150" y="168" width="50" height="3" rx="1.5" fill="rgba(0,0,0,0.1)"/>
+
+                    <!-- Person climbing the books -->
+                    <!-- Legs on 3rd book -->
+                    <rect x="235" y="210" width="14" height="35" rx="5" fill="#4A69BD" opacity="0.85" transform="rotate(10 242 227)"/>
+                    <rect x="248" y="200" width="14" height="40" rx="5" fill="#4A69BD" opacity="0.85" transform="rotate(-15 255 220)"/>
+                    <!-- Shoes -->
+                    <ellipse cx="240" cy="246" rx="10" ry="5" fill="#333" opacity="0.7" transform="rotate(10 240 246)"/>
+                    <ellipse cx="260" cy="240" rx="10" ry="5" fill="#333" opacity="0.7" transform="rotate(-15 260 240)"/>
+
+                    <!-- Body reaching up -->
+                    <path d="M238 170 C235 165, 237 155, 242 150 L258 150 C263 155, 265 165, 262 170 L265 210 L235 210 Z" fill="#FF6B6B" opacity="0.9"/>
+
+                    <!-- Right arm reaching UP toward star -->
+                    <path d="M260 160 Q280 130 290 105" stroke="#FDBCB4" stroke-width="10" stroke-linecap="round" fill="none"/>
+                    <!-- Hand -->
+                    <circle cx="292" cy="102" r="7" fill="#FDBCB4"/>
+
+                    <!-- Left arm holding a book -->
+                    <path d="M238 165 Q220 155 210 145" stroke="#FDBCB4" stroke-width="10" stroke-linecap="round" fill="none"/>
+                    <rect x="195" y="130" width="24" height="18" rx="2" fill="#fff" opacity="0.9" transform="rotate(-15 207 139)"/>
+                    <line x1="200" y1="136" x2="213" y2="133" stroke="#ddd" stroke-width="1.5"/>
+                    <line x1="200" y1="141" x2="210" y2="138" stroke="#ddd" stroke-width="1.5"/>
+
+                    <!-- Neck -->
+                    <rect x="244" y="125" width="12" height="26" rx="6" fill="#FDBCB4"/>
+                    <!-- Head -->
+                    <circle cx="250" cy="114" r="24" fill="#FDBCB4"/>
+                    <!-- Hair -->
+                    <path d="M226 108 C226 88, 240 76, 250 76 C260 76, 274 88, 274 108 C274 100, 266 92, 250 92 C234 92, 226 100, 226 108 Z" fill="#E67E22"/>
+                    <!-- Ponytail -->
+                    <path d="M270 94 Q285 90 280 110 Q278 120 272 115" fill="#E67E22" opacity="0.9"/>
+                    <!-- Eyes looking up -->
+                    <circle cx="242" cy="110" r="2.5" fill="#333"/>
+                    <circle cx="258" cy="110" r="2.5" fill="#333"/>
+                    <circle cx="242" cy="109" r="1" fill="#fff"/>
+                    <circle cx="258" cy="109" r="1" fill="#fff"/>
+                    <!-- Excited smile -->
+                    <path d="M243 120 Q250 128 257 120" stroke="#E8967A" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <!-- Blush -->
+                    <ellipse cx="236" cy="118" rx="5" ry="3" fill="#FFB8B8" opacity="0.4"/>
+                    <ellipse cx="264" cy="118" rx="5" ry="3" fill="#FFB8B8" opacity="0.4"/>
+
+                    <!-- Big star being reached for -->
+                    <path d="M300 70 L306 86 L324 86 L310 96 L314 114 L300 104 L286 114 L290 96 L276 86 L294 86 Z" fill="#FFC947" opacity="0.9">
+                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="300" cy="92" r="28" fill="#FFC947" opacity="0.08">
+                        <animate attributeName="r" values="26;32;26" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <!-- Floating small stars -->
+                    <path d="M80 60 L83 68 L92 68 L85 74 L87 82 L80 77 L73 82 L75 74 L68 68 L77 68 Z" fill="#FFC947" opacity="0.5">
+                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M60 140 L62 146 L68 146 L63 150 L65 156 L60 152 L55 156 L57 150 L52 146 L58 146 Z" fill="#fff" opacity="0.3">
+                        <animate attributeName="opacity" values="0.2;0.5;0.2" dur="2.5s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M340 160 L342 166 L348 166 L343 170 L345 176 L340 172 L335 176 L337 170 L332 166 L338 166 Z" fill="#00C9A7" opacity="0.4">
+                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3.5s" repeatCount="indefinite"/>
+                    </path>
+
+                    <!-- Floating sparkle dots -->
+                    <circle cx="100" cy="100" r="4" fill="#FF85A2" opacity="0.4">
+                        <animate attributeName="cy" values="100;90;100" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="330" cy="130" r="3" fill="#A29BFE" opacity="0.5">
+                        <animate attributeName="cy" values="130;120;130" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="70" cy="200" r="5" fill="#FFC947" opacity="0.3">
+                        <animate attributeName="cy" values="200;190;200" dur="3.5s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <!-- Small rocket in top left -->
+                    <g transform="translate(90,30) rotate(25)">
+                        <rect x="0" y="0" width="16" height="32" rx="8" fill="#fff" opacity="0.8"/>
+                        <circle cx="8" cy="10" r="4" fill="#74B9FF" opacity="0.8"/>
+                        <polygon points="0,28 8,38 16,28" fill="#FF6B6B" opacity="0.7"/>
+                        <rect x="-4" y="20" width="6" height="8" rx="1" fill="#FF6B6B" opacity="0.5" transform="rotate(-10 -1 24)"/>
+                        <rect x="14" y="20" width="6" height="8" rx="1" fill="#FF6B6B" opacity="0.5" transform="rotate(10 17 24)"/>
+                    </g>
+
+                    <!-- Paper airplane -->
+                    <g transform="translate(350,40)">
+                        <path d="M0 10 L25 0 L10 12 Z" fill="rgba(255,255,255,0.4)"/>
+                        <path d="M10 12 L25 0 L15 18 Z" fill="rgba(255,255,255,0.25)"/>
+                        <path d="M15 18 L18 14 L20 20" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none" stroke-dasharray="2,2"/>
+                    </g>
+
+                    <!-- Confetti-like elements -->
+                    <rect x="55" y="250" width="8" height="4" rx="2" fill="#FFC947" opacity="0.3" transform="rotate(30 59 252)"/>
+                    <rect x="350" y="230" width="6" height="3" rx="1.5" fill="#00C9A7" opacity="0.4" transform="rotate(-20 353 231)"/>
+                    <circle cx="40" cy="300" r="3" fill="#FF6B6B" opacity="0.25"/>
+                    <circle cx="370" cy="280" r="4" fill="#A29BFE" opacity="0.3"/>
+                </svg>
             </div>
 
-            <% if (typeof error !== 'undefined' && error.length > 0) { %>
-                <div class="alert alert-error"><%= error %></div>
+            <div class="auth-illust-content">
+                <h2><%= __('register.illustTitle') %></h2>
+                <p><%= __('register.illustDesc') %></p>
+            </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="auth-form-panel">
+            <div class="auth-form-actions">
+                <div class="auth-lang">
+                    <a href="/language/en?returnTo=/auth/register" class="<%= locale === 'en' ? 'active' : '' %>">EN</a>
+                    <a href="/language/tr?returnTo=/auth/register" class="<%= locale === 'tr' ? 'active' : '' %>">TR</a>
+                </div>
+                <button type="button" class="auth-icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+
+            <div class="auth-form-header">
+                <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> <%= __('register.backToHome') %></a>
+                <h1><%= __('register.title') %></h1>
+                <p><%= __('register.subtitle') %></p>
+            </div>
+
+            <% if (success && success.length > 0) { %>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> <%= success %>
+                </div>
+            <% } %>
+            <% if (error && error.length > 0) { %>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i> <%= error %>
+                </div>
             <% } %>
 
-            <form action="/auth/register" method="POST" class="auth-form">
+            <form action="/auth/register" method="POST" class="auth-form" id="registerForm">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="username" class="form-label"><%= __('register.username') %></label>
+                    <div class="input-wrap">
+                        <input type="text" id="username" name="username" class="form-control"
+                            placeholder="<%= __('register.usernamePlaceholder') %>"
+                            minlength="3" maxlength="30" required autofocus>
+                    </div>
+                    <small class="form-text"><%= __('register.usernameHint') %></small>
                 </div>
-
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email" class="form-label"><%= __('register.email') %></label>
+                    <div class="input-wrap">
+                        <input type="email" id="email" name="email" class="form-control"
+                            placeholder="<%= __('register.emailPlaceholder') %>" required>
+                    </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="password" class="form-label"><%= __('register.password') %></label>
+                    <div class="input-wrap pw-wrap">
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="<%= __('register.passwordPlaceholder') %>" minlength="6" required>
+                        <button type="button" class="pw-toggle" id="pwToggle1" aria-label="<%= __('login.showPassword') %>">
+                            <i class="fas fa-eye" id="pwIcon1"></i>
+                        </button>
+                    </div>
+                    <div class="pw-strength" id="pwStrength"><div class="pw-strength-bar" id="pwStrengthBar"></div></div>
+                    <div class="pw-strength-text" id="pwStrengthText"></div>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label"><%= __('register.confirmPassword') %></label>
+                    <div class="input-wrap pw-wrap">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                            placeholder="<%= __('register.confirmPlaceholder') %>" required>
+                        <button type="button" class="pw-toggle" id="pwToggle2" aria-label="<%= __('login.showPassword') %>">
+                            <i class="fas fa-eye" id="pwIcon2"></i>
+                        </button>
+                    </div>
+                    <div class="pw-match" id="pwMatch"></div>
+                </div>
+                <button type="submit" class="auth-btn auth-btn-register" id="submitBtn">
+                    <span id="btnText"><%= __('register.button') %></span> <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
 
-            <div class="auth-footer">
-                <p>Already have an account? <a href="/auth/login">Login here</a></p>
+            <div class="auth-form-footer">
+                <%= __('register.hasAccount') %> <a href="/auth/login"><%= __('register.loginLink') %></a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            var b=document.getElementById('themeToggle'),i=document.getElementById('themeIcon');
+            function s(){i.className=document.documentElement.getAttribute('data-theme')==='dark'?'fas fa-sun':'fas fa-moon'}
+            s();
+            b.addEventListener('click',function(){
+                var d=document.documentElement.getAttribute('data-theme')==='dark',n=d?'light':'dark';
+                document.documentElement.setAttribute('data-theme',n);localStorage.setItem('booknotes-theme',n);s();
+            });
+
+            function setupPwToggle(btnId,fieldId,iconId){
+                var btn=document.getElementById(btnId),field=document.getElementById(fieldId),ic=document.getElementById(iconId);
+                if(btn)btn.addEventListener('click',function(){var h=field.type==='password';field.type=h?'text':'password';ic.className=h?'fas fa-eye-slash':'fas fa-eye'});
+            }
+            setupPwToggle('pwToggle1','password','pwIcon1');
+            setupPwToggle('pwToggle2','confirmPassword','pwIcon2');
+
+            var pwField=document.getElementById('password');
+            var pwBar=document.getElementById('pwStrengthBar');
+            var pwText=document.getElementById('pwStrengthText');
+            var confirmField=document.getElementById('confirmPassword');
+            var matchEl=document.getElementById('pwMatch');
+
+            function checkStrength(pw){
+                var score=0;
+                if(pw.length>=6)score++;
+                if(pw.length>=10)score++;
+                if(/[A-Z]/.test(pw))score++;
+                if(/[a-z]/.test(pw))score++;
+                if(/[0-9]/.test(pw))score++;
+                if(/[^A-Za-z0-9]/.test(pw))score++;
+                return Math.min(score,5);
+            }
+
+            var strengthColors=['#f43f5e','#f97316','#eab308','#22c55e','#10b981'];
+            var strengthLabels=['<%= locale === "tr" ? "Çok Zayıf" : "Very Weak" %>','<%= locale === "tr" ? "Zayıf" : "Weak" %>','<%= locale === "tr" ? "Orta" : "Fair" %>','<%= locale === "tr" ? "Güçlü" : "Strong" %>','<%= locale === "tr" ? "Çok Güçlü" : "Very Strong" %>'];
+
+            if(pwField){pwField.addEventListener('input',function(){
+                var val=this.value;
+                if(!val){pwBar.style.width='0';pwText.textContent='';return;}
+                var str=checkStrength(val);
+                var pct=[20,40,60,80,100][str-1]||10;
+                pwBar.style.width=pct+'%';
+                pwBar.style.background=strengthColors[str-1]||'#f43f5e';
+                pwText.style.color=strengthColors[str-1]||'#f43f5e';
+                pwText.textContent=strengthLabels[str-1]||strengthLabels[0];
+                checkMatch();
+            })}
+
+            function checkMatch(){
+                var pw=pwField.value,cpw=confirmField.value;
+                if(!cpw){matchEl.className='pw-match';matchEl.textContent='';return;}
+                if(pw===cpw){matchEl.className='pw-match show ok';matchEl.innerHTML='<i class="fas fa-check-circle"></i> <%= locale === "tr" ? "Şifreler eşleşiyor" : "Passwords match" %>';}
+                else{matchEl.className='pw-match show no';matchEl.innerHTML='<i class="fas fa-times-circle"></i> <%= locale === "tr" ? "Şifreler eşleşmiyor" : "Passwords don\'t match" %>';}
+            }
+            if(confirmField)confirmField.addEventListener('input',checkMatch);
+
+            var form=document.getElementById('registerForm'),btn=document.getElementById('submitBtn'),btnText=document.getElementById('btnText');
+            if(form){form.addEventListener('submit',function(){
+                btn.disabled=true;btn.style.opacity='0.7';
+                btnText.textContent='...';
+            })}
+        });
+    </script>
 </body>
 </html>

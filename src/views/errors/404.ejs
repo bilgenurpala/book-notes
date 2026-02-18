@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - <%= __('error.pageNotFound') %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script>(function(){var s=localStorage.getItem('booknotes-theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})()</script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        [data-theme="light"]{--bg:#f8f9fc;--text:#0f172a;--sub:#64748b;--muted:#94a3b8;--surface:#fff;--border:rgba(99,102,241,0.08);--primary:#6366f1;--secondary:#8b5cf6;--pattern:radial-gradient(circle at 1px 1px, rgba(99,102,241,0.03) 1px, transparent 0)}
+        [data-theme="dark"]{--bg:#08080c;--text:#f1f5f9;--sub:#94a3b8;--muted:#64748b;--surface:#111118;--border:rgba(99,102,241,0.06);--primary:#6366f1;--secondary:#8b5cf6;--pattern:radial-gradient(circle at 1px 1px, rgba(99,102,241,0.025) 1px, transparent 0)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);background-image:var(--pattern);background-size:24px 24px;color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;transition:background-color 0.4s,color 0.4s}
+        .wrap{text-align:center;padding:2rem;max-width:480px;animation:fadeUp 0.6s ease}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .code{font-size:7rem;font-weight:900;letter-spacing:-4px;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+        h2{font-size:1.4rem;font-weight:800;margin:16px 0 8px;letter-spacing:-0.3px}
+        p{color:var(--sub);margin-bottom:24px;font-size:0.92rem;line-height:1.6}
+        .url{background:var(--surface);border:1px solid var(--border);padding:10px 16px;border-radius:12px;margin-bottom:28px;font-size:0.8rem;color:var(--muted);word-break:break-all}
+        a{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-radius:12px;text-decoration:none;font-weight:700;font-size:0.88rem;transition:all 0.25s;box-shadow:0 4px 16px rgba(99,102,241,0.3)}
+        a:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(99,102,241,0.4)}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="code">404</div>
+        <h2><%= __('error.pageNotFound') %></h2>
+        <p><%= __('error.pageNotFoundDesc') %></p>
+        <div class="url"><%= url %></div>
+        <a href="/"><i class="fas fa-arrow-left"></i> <%= __('error.backHome') %></a>
+    </div>
+</body>
+</html>

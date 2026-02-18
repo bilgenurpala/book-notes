@@ -1,75 +1,99 @@
-<div class="page-header">
-    <h2>Add New Book</h2>
-    <a href="/books" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Back to Books
-    </a>
-</div>
+<div class="container">
+    <div class="page-header fade-in">
+        <h1 class="page-title">
+            <i class="fas fa-plus-circle"></i> <%= __('bookForm.addTitle') %>
+        </h1>
+        <a href="/books" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> <%= __('bookForm.backToBooks') %>
+        </a>
+    </div>
 
-<div class="form-container">
-    <form action="/books/add" method="POST" enctype="multipart/form-data" class="book-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="title">Book Title *</label>
-                <input type="text" id="title" name="title" required>
+    <div class="card fade-in-d1" style="max-width: 800px; margin: 0 auto;">
+        <form action="/books/add" method="POST" enctype="multipart/form-data">
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label for="title" class="form-label">
+                        <i class="fas fa-book"></i> <%= __('bookForm.bookTitle') %> *
+                    </label>
+                    <input type="text" id="title" name="title" class="form-control"
+                        placeholder="<%= __('bookForm.bookTitle') %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="author" class="form-label">
+                        <i class="fas fa-user"></i> <%= __('bookForm.author') %> *
+                    </label>
+                    <input type="text" id="author" name="author" class="form-control"
+                        placeholder="<%= __('bookForm.author') %>" required>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="form-group">
+                    <label for="category" class="form-label">
+                        <i class="fas fa-tag"></i> <%= __('bookForm.category') %>
+                    </label>
+                    <input type="text" id="category" name="category" class="form-control"
+                        placeholder="<%= __('bookForm.categoryPlaceholder') %>">
+                </div>
+                <div class="form-group">
+                    <label for="status" class="form-label">
+                        <i class="fas fa-bookmark"></i> <%= __('bookForm.readingStatus') %>
+                    </label>
+                    <select id="status" name="status" class="form-control">
+                        <option value="want_to_read"><%= __('bookStatus.wantToRead') %></option>
+                        <option value="reading"><%= __('bookStatus.currentlyReading') %></option>
+                        <option value="completed"><%= __('bookStatus.completed') %></option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="author">Author *</label>
-                <input type="text" id="author" name="author" required>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" id="category" name="category" placeholder="Fiction, Science, Biography...">
-            </div>
-
-            <div class="form-group">
-                <label for="status">Reading Status *</label>
-                <select id="status" name="status" required>
-                    <option value="reading">Currently Reading</option>
-                    <option value="completed">Completed</option>
-                    <option value="want to read">Want to Read</option>
+                <label for="rating" class="form-label">
+                    <i class="fas fa-star"></i> <%= __('bookForm.rating') %>
+                </label>
+                <select id="rating" name="rating" class="form-control">
+                    <option value=""><%= __('bookForm.noRating') %></option>
+                    <option value="1">&#9733; <%= __('stars.1') %></option>
+                    <option value="2">&#9733;&#9733; <%= __('stars.2') %></option>
+                    <option value="3">&#9733;&#9733;&#9733; <%= __('stars.3') %></option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733; <%= __('stars.4') %></option>
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; <%= __('stars.5') %></option>
                 </select>
             </div>
-        </div>
 
-        <div class="form-row">
             <div class="form-group">
-                <label for="rating">Rating</label>
-                <select id="rating" name="rating">
-                    <option value="">Not rated yet</option>
-                    <option value="1">⭐ 1 Star</option>
-                    <option value="2">⭐⭐ 2 Stars</option>
-                    <option value="3">⭐⭐⭐ 3 Stars</option>
-                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-                </select>
+                <label for="summary" class="form-label">
+                    <i class="fas fa-align-left"></i> <%= __('bookForm.summary') %>
+                </label>
+                <textarea id="summary" name="summary" class="form-control" rows="4"
+                    placeholder="<%= __('bookForm.summaryPlaceholder') %>"></textarea>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="summary">Summary</label>
-            <textarea id="summary" name="summary" rows="4" placeholder="Brief summary or your thoughts about the book..."></textarea>
-        </div>
+            <div class="form-group">
+                <label for="cover_image" class="form-label">
+                    <i class="fas fa-image"></i> <%= __('bookForm.uploadCover') %>
+                </label>
+                <input type="file" id="cover_image" name="cover_image" class="form-control"
+                    accept="image/jpeg,image/png,image/webp,image/gif">
+                <small class="form-text"><%= __('bookForm.maxSize') %></small>
+            </div>
 
-        <div class="form-group">
-            <label for="cover_image">Cover Image</label>
-            <input type="file" id="cover_image" name="cover_image" accept="image/*">
-            <small>Or paste an image URL below</small>
-        </div>
+            <div class="form-group">
+                <label for="cover_url" class="form-label">
+                    <i class="fas fa-link"></i> <%= __('bookForm.orCoverUrl') %>
+                </label>
+                <input type="url" id="cover_url" name="cover_url" class="form-control"
+                    placeholder="https://example.com/book-cover.jpg">
+            </div>
 
-        <div class="form-group">
-            <label for="cover_url">Cover Image URL</label>
-            <input type="url" id="cover_url" name="cover_url" placeholder="https://example.com/cover.jpg">
-        </div>
-
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Add Book
-            </button>
-            <a href="/books" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
+            <div style="display: flex; gap: 12px; margin-top: 28px;">
+                <button type="submit" class="btn btn-primary btn-lg" style="flex: 1;">
+                    <i class="fas fa-plus"></i> <%= __('bookForm.addButton') %>
+                </button>
+                <a href="/books" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-times"></i> <%= __('bookForm.cancel') %>
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
