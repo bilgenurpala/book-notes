@@ -13,20 +13,22 @@
 ## 🖼️ Screenshots
 
 ### 🏠 Landing Page
-<!-- SCREENSHOT_LANDING -->
+![Homepage](https://github.com/user-attachments/assets/7d628e53-25a4-4dfb-954a-6b281349a0d9)
 
-### 🔐 Authentication
-<!-- SCREENSHOT_LOGIN -->
-<!-- SCREENSHOT_REGISTER -->
+### 🔐 Register
+![Register](https://github.com/user-attachments/assets/8ca52e64-a281-4cbb-a2a6-c24f3eed10d0)
+
+### 🔑 Login
+![Login](https://github.com/user-attachments/assets/4ba4c8e9-88fd-45d6-b425-04c2d109afa7)
 
 ### 📊 Dashboard
-<!-- SCREENSHOT_DASHBOARD -->
+![Dashboard](https://github.com/user-attachments/assets/c613da96-b980-4b18-8b61-1ccd7cefb380)
 
 ### 📖 My Books
-<!-- SCREENSHOT_MYBOOKS -->
+![My Books](https://github.com/user-attachments/assets/8302b545-ac6a-459c-b260-9df0e1b9443e)
 
 ### ➕ Add New Book
-<!-- SCREENSHOT_ADDBOOK -->
+![Add New Book](https://github.com/user-attachments/assets/a6ff55bb-cfbb-4bf9-9e3a-43667c309ef0)
 
 ---
 
