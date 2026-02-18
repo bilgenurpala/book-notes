@@ -13,22 +13,22 @@
 ## 🖼️ Screenshots
 
 ### 🏠 Landing Page
-![Homepage](https://github.com/user-attachments/assets/7d628e53-25a4-4dfb-954a-6b281349a0d9)
+![Homepage](https://github.com/user-attachments/assets/b114ce18-9e87-4f05-bd75-bb0bff1b6348)
 
 ### 🔐 Register
-![Register](https://github.com/user-attachments/assets/8ca52e64-a281-4cbb-a2a6-c24f3eed10d0)
+![Register](https://github.com/user-attachments/assets/e27c87e0-8da3-4f3c-beda-fc2ecb090226)
 
 ### 🔑 Login
-![Login](https://github.com/user-attachments/assets/4ba4c8e9-88fd-45d6-b425-04c2d109afa7)
+![Login](https://github.com/user-attachments/assets/935d503f-6708-48d7-a9e6-ed4f4be87354)
 
 ### 📊 Dashboard
-![Dashboard](https://github.com/user-attachments/assets/c613da96-b980-4b18-8b61-1ccd7cefb380)
+![Dashboard](https://github.com/user-attachments/assets/14b0803f-8f84-47aa-a559-fc6c36f80f48)
 
 ### 📖 My Books
-![My Books](https://github.com/user-attachments/assets/8302b545-ac6a-459c-b260-9df0e1b9443e)
+![My Books](https://github.com/user-attachments/assets/dadb0537-afa6-4673-86c3-b9fa8fef9d23)
 
 ### ➕ Add New Book
-![Add New Book](https://github.com/user-attachments/assets/a6ff55bb-cfbb-4bf9-9e3a-43667c309ef0)
+![Add New Book](https://github.com/user-attachments/assets/25ecd681-d3d8-45b9-a4b8-beed61e64ce8)
 
 ---
 
